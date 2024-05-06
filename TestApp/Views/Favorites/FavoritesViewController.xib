@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoritesViewController" customModule="TestApp" customModuleProvider="target">
             <connections>
                 <outlet property="FavoritesTV" destination="4ik-ln-NH3" id="X9U-6M-1gc"/>
+                <outlet property="NoFavLbl" destination="dbe-du-beM" id="Qgq-zG-QX3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,13 +25,21 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No favorites yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbe-du-beM">
+                    <rect key="frame" x="126.33333333333333" y="414.33333333333331" width="140.66666666666669" height="23.333333333333314"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="dbe-du-beM" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="KNv-Za-Q8o"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="4ik-ln-NH3" secondAttribute="bottom" id="e5U-te-VYT"/>
                 <constraint firstItem="4ik-ln-NH3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fgE-bA-Cfq"/>
                 <constraint firstItem="4ik-ln-NH3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="gzz-N5-RG0"/>
+                <constraint firstItem="dbe-du-beM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mnJ-hd-aYR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4ik-ln-NH3" secondAttribute="trailing" id="wjM-LB-cS4"/>
             </constraints>
             <point key="canvasLocation" x="45" y="21"/>

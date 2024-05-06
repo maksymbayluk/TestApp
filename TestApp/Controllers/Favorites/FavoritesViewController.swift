@@ -9,6 +9,7 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
 
+    @IBOutlet weak var NoFavLbl: UILabel!
     @IBOutlet weak var FavoritesTV: UITableView!
     var apps: [FavoriteApp] = []
     
@@ -19,16 +20,6 @@ class FavoritesViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         getFavoriteApps()
-    }
-    //MARK: - INTERNET CHECK
-    @objc func nointernet(notification: NSNotification) {
-        //show animation no internet
-        print("no internet in favorites")
-    }
-    @objc func internet(notification: NSNotification) {
-        //show animation no internet
-        print("internet in apps")
-        
     }
     
     //MARK: - TABLE VIEW UI
@@ -49,9 +40,20 @@ class FavoritesViewController: UIViewController {
         CoreDataTaskManager.shared.fetchFavorites { favoriteApps, error in
             if let favoriteApps = favoriteApps {
                 self.apps = favoriteApps
+
+                if self.apps.count > 0 {
+                    DispatchQueue.main.async {
+                        self.NoFavLbl.alpha = 0
+                    }
+                }
                 self.FavoritesTV.reloadData()
             }
             
+        }
+        if apps.count < 1 {
+            DispatchQueue.main.async {
+                self.NoFavLbl.alpha = 1
+            }
         }
         
     }

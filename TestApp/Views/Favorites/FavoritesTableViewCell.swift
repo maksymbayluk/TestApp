@@ -2,9 +2,8 @@
 //  FavoritesTableViewCell.swift
 //  TestApp
 //
-//  Created by Максим Байлюк on 05.05.2024.
+//  Created by Максим Байлюк on 06.05.2024.
 //
-
 import UIKit
 
 class FavoritesTableViewCell: UITableViewCell {
