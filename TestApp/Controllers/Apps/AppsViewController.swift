@@ -29,6 +29,9 @@ class AppsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         Reachability.shared.IsNetworkAvailable()
+        if NetworkManager.shared.data.isEmpty {
+            getData()
+        }
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
