@@ -24,7 +24,6 @@ class CoreDataTaskManager {
         app.image_url = data.image_url
         app.categoryTitle = title
         do {
-            print("saved")
             try context.save()
         } catch {
             print(error.localizedDescription)

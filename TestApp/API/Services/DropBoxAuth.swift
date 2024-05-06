@@ -17,7 +17,7 @@ class DropBoxAuth: UIViewController, SFSafariViewControllerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             // Perform logout action here
             // For example, you can clear user session, reset authentication tokens, etc.
-            print("Logged out from Dropbox")
+            
             
             // Call completion handler after logout process
             completion()
@@ -36,7 +36,6 @@ class DropBoxAuth: UIViewController, SFSafariViewControllerDelegate {
             // Call logout function after the SafariViewController is dismissed
             DropBoxAuth.logout {
                 // Additional actions after logout
-                print("Logout process completed. Now performing additional actions.")
                 // Perform other settings or navigation
                 completion()
             }

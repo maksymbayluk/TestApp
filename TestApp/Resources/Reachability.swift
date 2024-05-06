@@ -46,12 +46,10 @@ public class Reachability {
     func IsNetworkAvailable() {
         checkInternetConnection { isConnected in
             if isConnected {
-                print("Internet connection is available.")
                 
             } else {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "internetcheck"),
                                                 object: nil)
-                print("Internet Connection not Available!")
             }
         }
     }

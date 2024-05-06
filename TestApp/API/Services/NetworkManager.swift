@@ -27,7 +27,7 @@ class NetworkManager {
                 }
             }
             .progress { progressData in
-                print(progressData)
+                
         }
     }
         
@@ -49,7 +49,7 @@ class NetworkManager {
                 }
             }
             .progress { progressData in
-                print(progressData)
+                
             }
     }
 

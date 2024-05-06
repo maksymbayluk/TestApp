@@ -100,7 +100,6 @@ class AppsViewController: UIViewController {
                 activityIndicator.stopAnimating()
                 activityIndicator.alpha = 0
                 NetworkManager.shared.data = data
-                print(data.count)
                 // Update UI or perform tasks with the fetched data
                 DispatchQueue.main.async {
                     self.setUpCollectionView()

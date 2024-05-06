@@ -22,13 +22,11 @@ class NoInternetVC: UIViewController {
     
     @objc func reloadInternet(_ sender: UITapGestureRecognizer) {
         guard !isCheckingConnection else { return }
-        print("start checking")
         Reachability.shared.checkInternetConnection { isConnected in
             if isConnected {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "internetcheckOK"),
                                             object: nil)
             } else {
-                print("No internet connection.")
                 // Handle accordingly
             }
             self.isCheckingConnection = false
