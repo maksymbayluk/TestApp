@@ -8,55 +8,44 @@
 import Foundation
 import SwiftyDropbox
 
-protocol NetworkUIUpdateDelegate {
-    func updateUI()
-}
 
 class NetworkManager {
     static let shared = NetworkManager()
     public var data: [AppCategoryModel] = []
     
-    private init() {
-        self.delegate = AppsViewController()
-    }
+    private init() {}
     
-    var delegate: NetworkUIUpdateDelegate?
-    
-    func fetchImage(path: String) {
+    func fetchImage(path: String, completion: @escaping (Data?, Error?) -> Void) {
         let client = DropboxClientsManager.authorizedClient
         client!.files.download(path: path)
             .response { response, error in
                 if let response = response {
-                    let responseMetadata = response.0
-                    print(responseMetadata)
                     let fileContents = response.1
-                    print(fileContents)
+                    completion(fileContents, nil) // Pass image data to completion handler
                 } else if let error = error {
-                    print(error)
+                    completion(nil, error) // Pass error to completion handler
                 }
             }
             .progress { progressData in
                 print(progressData)
-            }
-        
-        //download image inside file system and show share menu via protocols
-       
+        }
     }
-    func fetchData() {
+        
+
+    func fetchData(completion: @escaping ([AppCategoryModel]?, Error?) -> Void) {
         let client = DropboxClientsManager.authorizedClient
         client!.files.download(path: "/data.json")
             .response { response, error in
                 if let response = response {
                     let fileContents = response.1
                     do {
-                        self.data = try JSONDecoder().decode([AppCategoryModel].self, from: fileContents)
+                        let decodedData = try JSONDecoder().decode([AppCategoryModel].self, from: fileContents)
+                        completion(decodedData, nil)
                     } catch {
-                        print(error.localizedDescription)
+                        completion(nil, error)
                     }
-                    self.delegate?.updateUI()
                 } else if let error = error {
-                    print(error)
-                    //do alert
+                    completion(nil, error)
                 }
             }
             .progress { progressData in

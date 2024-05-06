@@ -8,70 +8,91 @@
 import UIKit
 import SwiftyDropbox
 
-class AppsViewController: UIViewController, NetworkUIUpdateDelegate {
+
+class AppsViewController: UIViewController {
+
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    private var noInternetVC = NoInternetVC()
     
-    private lazy var collectionView = setUpCollectionView()
-    private var searchBar: UISearchBar!
-    private var filteredData: [String] = []
+    private var filteredData: [AppCategoryModel] = []
     static let shared = AppsViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpSearchBar()
-        view.addSubview(collectionView)
-        setupConstraints()
-        NetworkManager.shared.fetchData()
+        NotificationCenter.default.addObserver(self, selector: #selector(nointernet(notification:)), name: NSNotification.Name(rawValue: "internetcheck"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(internet(notification:)), name: NSNotification.Name(rawValue: "internetcheckOK"), object: nil)
+        
+        getData()
+
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        Reachability.shared.IsNetworkAvailable()
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    //MARK: - INTERNET CHECK
+    @objc func nointernet(notification: NSNotification) {
+        noInternetVC.modalPresentationStyle = .overFullScreen
+        navigationController?.present(noInternetVC, animated: true)
+    }
+    @objc func internet(notification: NSNotification) {
+        if NetworkManager.shared.data.count == 0 {
+            getData()
+        }
+        noInternetVC.dismiss(animated: true)
     }
     //MARK: - SEARCH BAR UI
     func setUpSearchBar() {
-        searchBar = UISearchBar()
         searchBar.delegate = self
         searchBar.placeholder = "Search"
         searchBar.searchBarStyle = .minimal
         searchBar.showsCancelButton = false
-        view.addSubview(searchBar)
     }
     
     //MARK: - COLLECTION VIEW UI
-    func setUpCollectionView() -> UICollectionView {
+    func setUpCollectionView() {
         let layout = AppsCompositionalLayout()
-        
-        // Initialize collection view
-        let collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionview.backgroundColor = .white
-        collectionview.delegate = self
-        collectionview.dataSource = self
-        collectionview.isHidden = false
+        collectionView.collectionViewLayout = layout
+        collectionView.frame = .zero
+        collectionView.backgroundColor = .systemBackground
+        collectionView.delegate = self
+        collectionView.dataSource = self
         let nib = UINib(nibName: "AppsCollectionViewCell", bundle: nil)
-        collectionview.register(nib, forCellWithReuseIdentifier: "AppsCollectionCell")
-        return collectionview
+        collectionView.register(nib, forCellWithReuseIdentifier: "AppsCollectionCell")
     }
-    func updateUI() {
-        self.view.layoutIfNeeded()
-        if !NetworkManager.shared.data.isEmpty {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+    func getData() {
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
+        NetworkManager.shared.fetchData { [weak self] (data, error) in
+            guard let self = self else { return }
+            if let error = error {
+                // Handle error, for example, show an alert
+                activityIndicator.stopAnimating()
+                activityIndicator.alpha = 0
+                print("Error fetching data: \(error.localizedDescription)")
+                return
+            }
+            
+            // Data fetched successfully, update UI or perform other tasks
+            if let data = data {
+                activityIndicator.stopAnimating()
+                activityIndicator.alpha = 0
+                NetworkManager.shared.data = data
+                print(data.count)
+                // Update UI or perform tasks with the fetched data
+                DispatchQueue.main.async {
+                    self.setUpCollectionView()
+                    self.setUpSearchBar()
+                }
+                
             }
         }
-        //loader
     }
     
     //MARK: - CONSTRAINTS & LAYOUT
-    
-    private func setupConstraints() {
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
     
     func AppsCompositionalLayout() -> UICollectionViewCompositionalLayout {
 
@@ -108,12 +129,9 @@ extension AppsViewController: UISearchBarDelegate {
         }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("search text is \(searchText)")
         filterContentForSearchText(searchText)
     }
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        
-    }
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         UIView.animate(withDuration: 0.3) {
@@ -126,9 +144,15 @@ extension AppsViewController: UISearchBarDelegate {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-//        filteredData = NetworkManager.shared.data?.filter { item in
-//            return item.lowercased().contains(searchText.lowercased())
-//        }
+        filteredData = []
+        for item in NetworkManager.shared.data {
+            if item.title.lowercased().contains(searchText.lowercased()) {
+                filteredData.append(item)
+                if filteredData.count == 3 {
+                    break
+                }
+            }
+        }
         collectionView.reloadData()
     }
     private func isFiltering() -> Bool {
@@ -144,10 +168,8 @@ extension AppsViewController: UISearchBarDelegate {
 extension AppsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFiltering() {
-            print(filteredData.count)
             return filteredData.count
         } else {
-            print(NetworkManager.shared.data.count)
             return NetworkManager.shared.data.count
         }
         
@@ -157,15 +179,18 @@ extension AppsViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AppsCollectionCell", for: indexPath) as! AppsCollectionViewCell
         let item: String
         let data = NetworkManager.shared.data
-        print(data[0].title)
         if isFiltering() {
-            item = filteredData[indexPath.item]
+            item = filteredData[indexPath.item].title
         } else {
             item = data[indexPath.item].title
         }
         cell.AppLbl.text = item
         
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = AppsListViewController(data: NetworkManager.shared.data[indexPath.row])
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

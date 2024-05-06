@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct AppCategoryModel: Codable {
+struct AppCategoryModel: Decodable {
     let title: String
     let apps: [AppModel]
 }
 
 
-struct AppModel: Codable {
+struct AppModel: Decodable {
     let title: String
     let image_url: String
     let description: String

@@ -17,6 +17,7 @@ class GuestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SignInBtn.tintColor = .tabBarItemAccent
         
     }
     
@@ -29,6 +30,7 @@ class GuestViewController: UIViewController {
     
     //MARK: - Dropbox Auth
     @IBAction func SignInTapped(_ sender: UIButton) {
+        HapticManager.shared.impact(style: .medium)
         let scopeRequest = ScopeRequest(scopeType: .user, scopes: ["files.content.read", "account_info.read"], includeGrantedScopes: false)
         DropboxClientsManager.authorizeFromControllerV2(
             UIApplication.shared,

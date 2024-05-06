@@ -9,21 +9,30 @@ import UIKit
 
 class NoInternetVC: UIViewController {
 
+    @IBOutlet weak var reloadView: UIView!
+    private var isCheckingConnection = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadView.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(reloadInternet(_:)))
+        reloadView.addGestureRecognizer(tapGesture)
 
-        // Do any additional setup after loading the view.
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @objc func reloadInternet(_ sender: UITapGestureRecognizer) {
+        guard !isCheckingConnection else { return }
+        print("start checking")
+        Reachability.shared.checkInternetConnection { isConnected in
+            if isConnected {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "internetcheckOK"),
+                                            object: nil)
+            } else {
+                print("No internet connection.")
+                // Handle accordingly
+            }
+            self.isCheckingConnection = false
+        }
+        
     }
-    */
-
 }

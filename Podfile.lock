@@ -1,0 +1,16 @@
+PODS:
+  - SwiftyDropbox (10.0.7)
+
+DEPENDENCIES:
+  - SwiftyDropbox
+
+SPEC REPOS:
+  trunk:
+    - SwiftyDropbox
+
+SPEC CHECKSUMS:
+  SwiftyDropbox: bd1e6f84cf36fa8d1440d4b54421d297e292dcd5
+
+PODFILE CHECKSUM: f824785c01e7c57d525274dad5f92e1f71340183
+
+COCOAPODS: 1.14.3

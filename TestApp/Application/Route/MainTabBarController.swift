@@ -13,6 +13,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setTabBar()
         setTabBarAppearance()
+        
     }
     
     private func setTabBar() {
@@ -42,10 +43,14 @@ class MainTabBarController: UITabBarController {
         
         tabBar.itemWidth = width / 5
         tabBar.itemPositioning = .centered
+        let appearance = tabBar.standardAppearance
+        appearance.shadowImage = nil
+        appearance.shadowColor = nil
+        tabBar.standardAppearance = appearance;
         
         roundedLayer.fillColor = UIColor.mainBarColor.cgColor
         tabBar.tintColor = .tabBarItemAccent
-        tabBar.barTintColor = .mainBarColor
+        //tabBar.barTintColor = .mainBarColor
         tabBar.unselectedItemTintColor = .tabBarItemLight
         
     }

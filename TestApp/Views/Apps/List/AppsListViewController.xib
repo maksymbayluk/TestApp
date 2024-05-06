@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AppsListVCViewController" customModule="TestApp" customModuleProvider="target">
             <connections>
                 <outlet property="AppsTableView" destination="S0y-yU-VDL" id="7qY-aR-0An"/>
+                <outlet property="NoAppsWarningLbl" destination="WHO-3P-jYE" id="ipe-a1-LRn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,18 +21,28 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="S0y-yU-VDL">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="S0y-yU-VDL">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No apps found in this category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHO-3P-jYE">
+                    <rect key="frame" x="50" y="400.33333333333331" width="293" height="51.333333333333314"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S0y-yU-VDL" secondAttribute="trailing" id="A1r-Ho-Le9"/>
                 <constraint firstItem="S0y-yU-VDL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HaO-6Y-Qny"/>
+                <constraint firstItem="WHO-3P-jYE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="RhF-vf-120"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="S0y-yU-VDL" secondAttribute="bottom" id="TFP-e0-gu6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="WHO-3P-jYE" secondAttribute="trailing" constant="50" id="VU8-Ie-PUV"/>
+                <constraint firstItem="WHO-3P-jYE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="W82-vU-ZSf"/>
                 <constraint firstItem="S0y-yU-VDL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mOz-pO-Sbk"/>
+                <constraint firstItem="WHO-3P-jYE" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="sVq-ux-YwA"/>
             </constraints>
             <point key="canvasLocation" x="66" y="21"/>
         </view>

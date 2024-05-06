@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AppsViewController" customModule="TestApp" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="7qt-Im-8mn" id="iNG-gI-icn"/>
+                <outlet property="collectionView" destination="f82-sB-IxW" id="c3a-Rg-Xm7"/>
+                <outlet property="searchBar" destination="9IU-8Y-g30" id="dmW-fV-tMt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,8 +21,46 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="f82-sB-IxW">
+                    <rect key="frame" x="16" y="109" width="361" height="709"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XFO-NI-YFu">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="9IU-8Y-g30">
+                    <rect key="frame" x="16" y="59" width="361" height="42"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="puc-xK-g36"/>
+                    </connections>
+                </searchBar>
+                <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="7qt-Im-8mn">
+                    <rect key="frame" x="181.66666666666666" y="411" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="WaF-l0-iuQ"/>
+                        <constraint firstAttribute="width" constant="30" id="gy0-vE-TiD"/>
+                    </constraints>
+                </activityIndicatorView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="f82-sB-IxW" secondAttribute="trailing" constant="16" id="B55-9Y-1Mz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="f82-sB-IxW" secondAttribute="bottom" id="B7O-0B-evd"/>
+                <constraint firstItem="7qt-Im-8mn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DJK-tg-y25"/>
+                <constraint firstItem="f82-sB-IxW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="GkD-a9-SsJ"/>
+                <constraint firstItem="9IU-8Y-g30" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-16" id="IpJ-Gg-wIi"/>
+                <constraint firstItem="f82-sB-IxW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="YaM-gr-Vzd"/>
+                <constraint firstItem="9IU-8Y-g30" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mwh-aY-SL4"/>
+                <constraint firstItem="7qt-Im-8mn" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="n70-Dh-mL5"/>
+                <constraint firstItem="f82-sB-IxW" firstAttribute="top" secondItem="9IU-8Y-g30" secondAttribute="bottom" constant="8" id="t2G-bQ-tCn"/>
+                <constraint firstItem="9IU-8Y-g30" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="tW7-4P-GYy"/>
+            </constraints>
             <point key="canvasLocation" x="24" y="21"/>
         </view>
     </objects>
