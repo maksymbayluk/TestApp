@@ -8,9 +8,10 @@
 import UIKit
 import SwiftyDropbox
 import Network
+import SafariServices
 
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, SFSafariViewControllerDelegate {
     var window: UIWindow?
     static let shared = SceneDelegate()
 //    let authManager = DropboxOAuthManager(appKey: "4y2x12wkxjr85kp", secureStorageAccess: "7akkuar2jmcpwhq" as! SecureStorageAccess)
@@ -66,7 +67,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     func sceneDidBecomeActive(_ scene: UIScene) {
         Reachability.shared.IsNetworkAvailable()
-        
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+    
     }

@@ -14,6 +14,8 @@
 		1722644F2BE78CFC002584B8 /* AppsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1722644D2BE78CFC002584B8 /* AppsListViewController.xib */; };
 		172264522BE78D22002584B8 /* AppDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172264502BE78D22002584B8 /* AppDetailViewController.swift */; };
 		172264532BE78D22002584B8 /* AppDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 172264512BE78D22002584B8 /* AppDetailViewController.xib */; };
+		1725512B2BE9147E00B81FE8 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1725512A2BE9147E00B81FE8 /* Service.swift */; };
+		1725512D2BE91A0200B81FE8 /* DropBoxAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1725512C2BE91A0200B81FE8 /* DropBoxAuth.swift */; };
 		173E3C5C2BE4E674008671A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173E3C5B2BE4E674008671A7 /* AppDelegate.swift */; };
 		173E3C662BE4E674008671A7 /* TestApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 173E3C642BE4E674008671A7 /* TestApp.xcdatamodeld */; };
 		173E3C682BE4E675008671A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 173E3C672BE4E675008671A7 /* Assets.xcassets */; };
@@ -56,6 +58,8 @@
 		1722644D2BE78CFC002584B8 /* AppsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppsListViewController.xib; sourceTree = "<group>"; };
 		172264502BE78D22002584B8 /* AppDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDetailViewController.swift; sourceTree = "<group>"; };
 		172264512BE78D22002584B8 /* AppDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppDetailViewController.xib; sourceTree = "<group>"; };
+		1725512A2BE9147E00B81FE8 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1725512C2BE91A0200B81FE8 /* DropBoxAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxAuth.swift; sourceTree = "<group>"; };
 		173E3C582BE4E674008671A7 /* TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		173E3C5B2BE4E674008671A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		173E3C652BE4E674008671A7 /* TestApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestApp.xcdatamodel; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 				17EEFD672BE84E0F001825BF /* Reachability.swift */,
 				1777F1B82BE8BF5800317B2D /* UIViewExtension.swift */,
 				1707F3652BE8D10D003C1000 /* HapticManager.swift */,
+				1725512A2BE9147E00B81FE8 /* Service.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 			children = (
 				17807A9A2BE56F5E00BCEF99 /* NetworkManager.swift */,
 				17EEFD422BE83674001825BF /* ImageManager.swift */,
+				1725512C2BE91A0200B81FE8 /* DropBoxAuth.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -497,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1781A2512BE8EDE9002BCCD5 /* FavoritesTableViewCell.swift in Sources */,
+				1725512B2BE9147E00B81FE8 /* Service.swift in Sources */,
 				173E3C662BE4E674008671A7 /* TestApp.xcdatamodeld in Sources */,
 				1707F3662BE8D10D003C1000 /* HapticManager.swift in Sources */,
 				17807AA02BE5914700BCEF99 /* UIColorExtension.swift in Sources */,
@@ -517,6 +524,7 @@
 				17F4803A2BE7E1E20087943D /* CoreDataTaskManager.swift in Sources */,
 				17EEFD682BE84E0F001825BF /* Reachability.swift in Sources */,
 				1777F1B92BE8BF5800317B2D /* UIViewExtension.swift in Sources */,
+				1725512D2BE91A0200B81FE8 /* DropBoxAuth.swift in Sources */,
 				1777F1BC2BE8C1D500317B2D /* NoInternetVC.swift in Sources */,
 				17AB03992BE5070600EFB506 /* SceneDelegate.swift in Sources */,
 				17F480382BE7DEC90087943D /* AppModel.xcdatamodeld in Sources */,
@@ -710,7 +718,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = swiftuitest.TestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = swiftuitest.TestApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

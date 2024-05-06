@@ -83,7 +83,8 @@ class AppDetailViewController: UIViewController {
             } else if error != nil {
                 self.ActivityIndicator.stopAnimating()
                 self.ActivityIndicator.alpha = 0
-                self.showErrorAlert(message: "Cannot download image for you")
+                let alert = Service.createAlertController(title: "Error", message: "Cannot download image for you")
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -120,7 +121,8 @@ class AppDetailViewController: UIViewController {
                     openShareMenu(with: self.AppImage.image!)
                 }
             } else if error != nil {
-                showErrorAlert(message: "Cannot download image for you")
+                let alert = Service.createAlertController(title: "Error", message: "Cannot download image for you")
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
@@ -129,11 +131,6 @@ class AppDetailViewController: UIViewController {
         let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // For iPad compatibility
         self.present(activityViewController, animated: true, completion: nil)
-    }
-    func showErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
     
     
