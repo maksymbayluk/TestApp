@@ -31,17 +31,18 @@
                             <rect key="frame" x="16" y="8" width="305" height="34"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet connection. Try again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3o-Oi-SSE">
-                                    <rect key="frame" x="0.0" y="0.0" width="253" height="34"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="275" height="34"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Bz-rf-8ZC">
-                                    <rect key="frame" x="253" y="0.0" width="52" height="34"/>
-                                    <color key="tintColor" systemColor="systemRedColor"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="goforward" catalog="system"/>
-                                </button>
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goforward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9kb-bT-PS4">
+                                    <rect key="frame" x="275" y="-1" width="30" height="34.666666666666664"/>
+                                    <color key="tintColor" systemColor="systemOrangeColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="30" id="YIH-hj-M9M"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                         </stackView>
                     </subviews>
@@ -101,8 +102,8 @@
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
