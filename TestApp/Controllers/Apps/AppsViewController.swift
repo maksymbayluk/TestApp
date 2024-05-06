@@ -74,7 +74,7 @@ class AppsViewController: UIViewController {
             if let error = error {
                 switch error as! CallError<Any> {
                 case .routeError:
-                    let alertWithCompletion = Service.createAlertController(title: "Error", message: "wrong user signed in") {
+                    let alertWithCompletion = Service.createAlertController(title: "No data initialized for this user", message: "wrong user signed in") {
                         let guest = GuestViewController()
                         DropBoxAuth.presentDropboxLogout(from: self) {
                             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: guest)
