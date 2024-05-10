@@ -72,26 +72,17 @@ class AppsViewController: UIViewController {
         NetworkManager.shared.fetchData { [weak self] (data, error) in
             guard let self = self else { return }
             if let error = error {
-                switch error as! CallError<Any> {
-                case .routeError:
-                    let alertWithCompletion = Service.createAlertController(title: "No data initialized for this user", message: "wrong user signed in") {
-                        let guest = GuestViewController()
-                        DropBoxAuth.presentDropboxLogout(from: self) {
-                            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: guest)
-                        }
-                            
+                let alertWithCompletion = Service.createAlertController(title: "No data initialized for this user", message: "wrong user signed in") {
+                    let guest = GuestViewController()
+                    DropBoxAuth.presentDropboxLogout(from: self) {
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootVC(vc: guest)
                     }
-                    self.present(alertWithCompletion, animated: true)
-                default:
-                    let alert = Service.createAlertController(title: "Error", message: "something wrong with a server")
-                    self.present(alert, animated: true)
                     
                 }
-                // Handle error, for example, show an alert
                 activityIndicator.stopAnimating()
                 activityIndicator.alpha = 0
-                let alert = Service.createAlertController(title: error.localizedDescription, message: "")
-                self.present(alert, animated: true, completion: nil)
+                self.present(alertWithCompletion, animated: true)
+                
                 return
             }
             
